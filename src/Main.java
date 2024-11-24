@@ -1,15 +1,19 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Hero[] heroes = {
+                new Magic(100, 20, "FIREBALL"),
+                new Medic(80, 10, "HEALING", 50),
+                new Warrior(120, 30, "CRITICAL DAMAGE")
+        };
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        for (Hero hero : heroes) {
+            hero.applySuperAbility();
+
+            if (hero instanceof Medic) {
+                Medic medic = (Medic) hero;
+                medic.increaseExperience();
+                System.out.println("Новый опыт лечения медика: " + medic.getHealPoints());
+            }
         }
     }
 }
